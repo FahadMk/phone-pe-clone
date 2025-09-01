@@ -253,7 +253,7 @@ class _PaymentActionCardState extends State<PaymentActionCard> {
                   if (widget.showBanner) ...[
                     Container(
                       padding: const EdgeInsets.symmetric(
-                        vertical: 4,
+                        vertical: 2,
                         horizontal: 8,
                       ),
                       decoration: BoxDecoration(

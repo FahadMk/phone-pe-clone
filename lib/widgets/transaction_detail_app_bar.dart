@@ -172,23 +172,6 @@ class TransactionDetailGradientAppBar extends StatelessWidget
     }
   }
 
-  List<Widget> _getDefaultActions() {
-    return [
-      IconButton(
-        icon: const Icon(Icons.share, color: Colors.white),
-        onPressed: () {
-          // Handle share transaction details
-        },
-      ),
-      IconButton(
-        icon: const Icon(Icons.download, color: Colors.white),
-        onPressed: () {
-          // Handle download receipt
-        },
-      ),
-    ];
-  }
-
   SystemUiOverlayStyle _getSystemOverlayStyle() {
     final primaryColor = _getGradientColors().first;
     return SystemUiOverlayStyle(
