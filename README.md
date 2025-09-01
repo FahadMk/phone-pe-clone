@@ -223,23 +223,27 @@ Update suggestion lists and service options in respective screen files.
 
 ### Home Screen
 
-![Home Screen](screenshots/home_screen.jpg)
+<img src="screenshots/home_screen.jpg" alt="Home Screen" height="500">
 
 ### Search Screen
 
 ![Search Screen](screenshots/search_screen.jpg)
+<img src="screenshots/search_screen.jpg" alt="Search Screen" height="500">
 
 ### History Screen
 
 ![History Screen](screenshots/history_screen.jpg)
+<img src="screenshots/history_screen.jpg" alt="History Screen" height="500">
 
 ### Alerts Screen
 
 ![Alerts Screen](screenshots/alerts_screen.jpg)
+<img src="screenshots/alert_screen.jpg" alt="Alert Screen" height="500">
 
 ### Scanner Screen
 
 ![Scanner Screen](screenshots/scanner_screen.jpg)
+<img src="screenshots/scanner_screen.jpg" alt="Scanner Screen" height="500">
 
 ## 🤝 Contributing
 
