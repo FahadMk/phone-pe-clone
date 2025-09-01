@@ -223,7 +223,7 @@ Update suggestion lists and service options in respective screen files.
 
 ### Home Screen
 
-<img src="screenshots/home_screen.jpg" alt="Home Screen" height="500">
+<img src="screenshots/home_screen.png" alt="Home Screen" height="500">
 
 ### Search Screen
 
