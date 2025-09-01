@@ -235,11 +235,11 @@ Update suggestion lists and service options in respective screen files.
 
 ### Alerts Screen
 
-![Alerts Screen](screenshots/alerts_screen.png)
+![Alerts Screen](screenshots/alerts_screen.jpg)
 
 ### Scanner Screen
 
-![Scanner Screen](screenshots/scanner_screen.png)
+![Scanner Screen](screenshots/scanner_screen.jpg)
 
 ## 🤝 Contributing
 
