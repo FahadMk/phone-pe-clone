@@ -2,11 +2,12 @@
 
 A modern Flutter application featuring a sleek financial services interface with advanced UI components, smooth animations, and intuitive navigation.
 
-> **Educational Project**: This application is created for learning purposes. The UI design and user experience are inspired by PhonePe's interface. This is a non-commercial educational project and no ownership is claimed over the original design concepts. 
+> **Educational Project**: This application is created for learning purposes. The UI design and user experience are inspired by PhonePe's interface. This is a non-commercial educational project and no ownership is claimed over the original design concepts.
 
 ## 📱 Features
 
 ### 🏠 Home Screen
+
 - **Custom Sliver AppBar** with image background and smooth scroll transitions
 - **Sticky Header** that appears/disappears based on scroll position
 - **Quick Actions Section** with circular action buttons for money transfers
@@ -15,6 +16,7 @@ A modern Flutter application featuring a sleek financial services interface with
 - **Slidable Container Widget** with pagination dots and smooth animations
 
 ### 🔍 Search Screen
+
 - **Animated Hint Text** that cycles through different suggestions
 - **Smart AppBar Transitions** - hides when keyboard appears
 - **Interactive Suggestion Chips** with wrap layout
@@ -22,6 +24,7 @@ A modern Flutter application featuring a sleek financial services interface with
 - **Smooth Focus Animations** with 800ms transitions
 
 ### 📜 History Screen
+
 - **Collapsible Header** with scroll-based animations
 - **Sticky Search Bar** that remains pinned while scrolling
 - **Conditional Bottom Border** on search bar when scrolled
@@ -29,18 +32,21 @@ A modern Flutter application featuring a sleek financial services interface with
 - **Sliver-based Architecture** for smooth scrolling performance
 
 ### 🔔 Alerts Screen
+
 - **Notification Management** with read/unread states
 - **Color-coded Alert Types** (success, warning, error, info)
 - **Mark All Read** functionality
 - **Interactive List Items** with proper touch feedback
 
 ### 📷 QR Scanner Screen
+
 - **Barcode Scanner Interface** with scanning animations
 - **Circular Progress Indicator** during scan process
 - **Result Dialog** with sample data display
 - **Professional UI Design** with proper spacing and colors
 
 ### 🧭 Navigation
+
 - **Custom Bottom Navigation Bar** with 5 tabs
 - **Special QR Scanner Button** with purple circular highlight
 - **Smooth Tab Switching** with proper state management
@@ -49,18 +55,21 @@ A modern Flutter application featuring a sleek financial services interface with
 ## 🎨 UI/UX Highlights
 
 ### Design System
+
 - **Dark Theme** with black background throughout
 - **Consistent Color Palette** with purple accents
 - **Proper Typography** with letter spacing and font weights
 - **Rounded Corners** and subtle borders for modern look
 
 ### Animations
+
 - **Fade Transitions** for hint text cycling (800ms)
 - **Slide Animations** for AppBar hiding/showing
 - **Smooth Scrolling** with proper physics
 - **Page Transitions** between navigation tabs
 
 ### Interactive Elements
+
 - **Custom Chips** with borders and hover states
 - **Animated Dots Indicator** for page navigation
 - **Touch Feedback** on all interactive components
@@ -69,6 +78,7 @@ A modern Flutter application featuring a sleek financial services interface with
 ## 🏗️ Architecture
 
 ### Project Structure
+
 ```
 lib/
 ├── main.dart                          # App entry point
@@ -91,6 +101,7 @@ lib/
 ### Key Components
 
 #### Custom Widgets
+
 - **SlidableContainerWidget**: Paginated container with dots indicator
 - **DotsIndicator**: Animated page position indicator
 - **QuickActionItem**: Circular action buttons
@@ -99,6 +110,7 @@ lib/
 - **StickyAppBar**: Scroll-aware app bar
 
 #### Animation Controllers
+
 - **Slide Animations**: For AppBar transitions
 - **Fade Animations**: For hint text cycling
 - **Opacity Animations**: For smooth UI state changes
@@ -106,6 +118,7 @@ lib/
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - Flutter SDK (latest stable version)
 - Dart SDK
 - IDE (VS Code, Android Studio, etc.)
@@ -113,17 +126,20 @@ lib/
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone <repository-url>
    cd sliver_app
    ```
 
 2. **Install dependencies**
+
    ```bash
    flutter pub get
    ```
 
 3. **Add assets**
+
    - Add your image to `assets/test_image.png`
    - Update `pubspec.yaml` if needed
 
@@ -135,6 +151,7 @@ lib/
 ## 📦 Dependencies
 
 ### Core Dependencies
+
 ```yaml
 dependencies:
   flutter:
@@ -143,6 +160,7 @@ dependencies:
 ```
 
 ### Development Tools
+
 ```yaml
 dev_dependencies:
   flutter_test:
@@ -153,17 +171,20 @@ dev_dependencies:
 ## 🎯 Key Technical Features
 
 ### Performance Optimizations
+
 - **Sliver Widgets** for efficient scrolling
 - **Proper Widget Disposal** to prevent memory leaks
 - **Animation Controller Management** with lifecycle awareness
 - **Conditional Rendering** to optimize build methods
 
 ### Responsive Design
+
 - **Flexible Layouts** using Wrap and Flex widgets
 - **Safe Area Handling** for different device sizes
 - **Dynamic Spacing** based on content and screen size
 
 ### State Management
+
 - **StatefulWidget** approach for local state
 - **Animation State Tracking** for smooth transitions
 - **Focus State Management** for keyboard interactions
@@ -172,7 +193,9 @@ dev_dependencies:
 ## 🔧 Customization
 
 ### Colors
+
 Update colors in individual widget files or create a theme:
+
 ```dart
 // Example color scheme
 const primaryColor = Color(0xFF601f9e);
@@ -181,7 +204,9 @@ const surfaceColor = Colors.grey.shade900;
 ```
 
 ### Animations
+
 Modify animation durations and curves:
+
 ```dart
 // Example animation customization
 _animationController = AnimationController(
@@ -191,11 +216,30 @@ _animationController = AnimationController(
 ```
 
 ### Content
+
 Update suggestion lists and service options in respective screen files.
 
 ## 📱 Screenshots
 
-*(Add screenshots of your app here)*
+### Home Screen
+
+![Home Screen](screenshots/home_screen.jpg)
+
+### Search Screen
+
+![Search Screen](screenshots/search_screen.jpg)
+
+### History Screen
+
+![History Screen](screenshots/history_screen.jpg)
+
+### Alerts Screen
+
+![Alerts Screen](screenshots/alerts_screen.png)
+
+### Scanner Screen
+
+![Scanner Screen](screenshots/scanner_screen.png)
 
 ## 🤝 Contributing
 
@@ -212,11 +256,13 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## 👨‍💻 Developer Notes
 
 ### Code Organization
+
 - **Separation of Concerns**: Each screen handles its own logic
 - **Reusable Components**: Common widgets extracted to widgets folder
 - **Clean Architecture**: Clear separation between UI and business logic
 
 ### Best Practices Implemented
+
 - **Proper Widget Lifecycle Management**
 - **Animation Controller Disposal**
 - **Memory Leak Prevention**
