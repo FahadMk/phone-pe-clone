@@ -4,6 +4,7 @@ import '../widgets/recharge_bills_section.dart';
 import '../widgets/payment_actions_section.dart';
 import '../widgets/slidable_container_widget.dart';
 import '../widgets/sticky_app_bar.dart';
+import '../widgets/common_app_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -50,16 +51,11 @@ class _HomeScreenState extends State<HomeScreen> {
           CustomScrollView(
             controller: _scrollController,
             slivers: [
-              SliverAppBar(
+              CommonSliverAppBar(
+                title: 'Home',
                 toolbarHeight: 70,
                 expandedHeight: 240,
-                backgroundColor: Colors.black,
-                flexibleSpace: FlexibleSpaceBar(
-                  background: Image.asset(
-                    'assets/test_image.png',
-                    fit: BoxFit.cover,
-                  ),
-                ),
+                backgroundImagePath: 'assets/test_image.png',
               ),
               //Quick Action Section
               const SliverToBoxAdapter(child: QuickActionsSection()),

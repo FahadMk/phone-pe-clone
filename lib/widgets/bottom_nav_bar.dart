@@ -19,13 +19,13 @@ class BottomNavBar extends StatefulWidget {
 class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 80,
-      decoration: const BoxDecoration(
-        color: Colors.black,
-        border: Border(top: BorderSide(color: Colors.white12, width: 0.5)),
-      ),
-      child: SafeArea(
+    return SafeArea(
+      child: Container(
+        height: 80,
+        decoration: const BoxDecoration(
+          color: Colors.black,
+          border: Border(top: BorderSide(color: Colors.white12, width: 0.5)),
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -76,19 +76,28 @@ class _BottomNavBarState extends State<BottomNavBar> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              isSelected ? selectedIcon : icon,
-              color: isSelected ? Colors.white : Colors.grey,
-              size: 24,
+            AnimatedSwitcher(
+              duration: Duration(milliseconds: 300),
+              child: Icon(
+                isSelected ? selectedIcon : icon,
+                key: ValueKey(
+                  isSelected
+                      ? '${item.name}_selected'
+                      : '${item.name}_unselected',
+                ),
+                color: isSelected ? Colors.white : Colors.grey,
+                size: 24,
+              ),
             ),
             const SizedBox(height: 4),
-            Text(
-              label,
+            AnimatedDefaultTextStyle(
+              duration: Duration(milliseconds: 300),
               style: TextStyle(
                 color: isSelected ? Colors.white : Colors.grey,
                 fontSize: 12,
                 fontWeight: isSelected ? FontWeight.w500 : FontWeight.w400,
               ),
+              child: Text(label),
             ),
           ],
         ),
@@ -111,9 +120,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
               height: 60,
               width: 60,
               decoration: BoxDecoration(
-                color: const Color(0xFF601f9e),
+                color: const Color(0xFF8522ee),
                 shape: BoxShape.circle,
-                border: Border.all(color: const Color(0xFF601f9e), width: 2),
+                border: Border.all(color: const Color(0xFF8522ee), width: 2),
               ),
               child: Center(
                 child: Icon(

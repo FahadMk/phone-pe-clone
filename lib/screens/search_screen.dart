@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/common_app_bar.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -43,16 +44,16 @@ class _SearchScreenState extends State<SearchScreen>
   void initState() {
     super.initState();
     _animationController = AnimationController(
-      duration: const Duration(milliseconds: 800),
+      duration: const Duration(milliseconds: 200),
       vsync: this,
     );
     _slideAnimation = Tween<double>(begin: 0, end: 20).animate(
-      CurvedAnimation(parent: _animationController, curve: Curves.ease),
+      CurvedAnimation(parent: _animationController, curve: Curves.linear),
     );
 
     // Hint animation controller
     _hintAnimationController = AnimationController(
-      duration: const Duration(milliseconds: 800),
+      duration: const Duration(milliseconds: 500),
       vsync: this,
     );
     _hintFadeAnimation = Tween<double>(begin: 1.0, end: 0.0).animate(
@@ -171,27 +172,15 @@ class _SearchScreenState extends State<SearchScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: _isSearchFocused
-          ? null
-          : AppBar(
-              backgroundColor: Colors.black,
-              actions: [
-                Container(
-                  height: 40,
-                  margin: EdgeInsets.only(right: 16),
-                  padding: const EdgeInsets.all(1),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(color: Colors.white, width: 2),
-                  ),
-                  child: Icon(
-                    Icons.question_mark_sharp,
-                    color: Colors.white.withValues(alpha: 0.8),
-                    size: 16,
-                  ),
-                ),
-              ],
-            ),
+      appBar: CommonAppBar(
+        title: 'Search',
+        type: AppBarType.conditional,
+        condition: !_isSearchFocused,
+        showTitle: false,
+        actions: [
+          AppBarAction.help(),
+        ],
+      ),
       body: Stack(
         children: [
           // Main content
@@ -258,7 +247,10 @@ class _SearchScreenState extends State<SearchScreen>
                             ),
                           ),
                           border: InputBorder.none,
-                          contentPadding: const EdgeInsets.all(16),
+                          contentPadding: const EdgeInsets.symmetric(
+                            vertical: 8,
+                            horizontal: 20,
+                          ),
                           label:
                               _isSearchFocused ||
                                   _searchController.text.isNotEmpty

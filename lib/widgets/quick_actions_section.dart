@@ -29,7 +29,10 @@ class QuickActionsSection extends StatelessWidget {
               QuickActionItem(icon: Icons.send, text: 'To Mobile Number'),
               QuickActionItem(icon: Icons.dehaze, text: 'To Bank & Self A/c'),
               QuickActionItem(icon: Icons.swap_horiz, text: 'Refer & Get \$50'),
-              QuickActionItem(icon: Icons.account_balance, text: 'Check Balance'),
+              QuickActionItem(
+                icon: Icons.account_balance,
+                text: 'Check Balance',
+              ),
             ],
           ),
         ],
@@ -42,11 +45,7 @@ class QuickActionItem extends StatelessWidget {
   final IconData icon;
   final String text;
 
-  const QuickActionItem({
-    super.key,
-    required this.icon,
-    required this.text,
-  });
+  const QuickActionItem({super.key, required this.icon, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +62,7 @@ class QuickActionItem extends StatelessWidget {
                 shape: BoxShape.circle,
                 color: Color(0xFF601f9e),
               ),
-              child: Center(child: Icon(icon, color: Colors.white, size: 20)),
+              child: Center(child: Icon(icon, color: Colors.white, size: 26)),
             ),
             const SizedBox(height: 8),
             Text(

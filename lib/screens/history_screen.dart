@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import '../widgets/common_app_bar.dart';
+import 'transaction_detail_screen.dart';
+import '../utils/custom_page_route.dart';
 
 class HistoryScreen extends StatefulWidget {
   const HistoryScreen({super.key});
@@ -17,42 +21,58 @@ class _HistoryScreenState extends State<HistoryScreen>
     TransactionItem(
       title: 'Mobile Recharge',
       subtitle: 'Vodafone - 9876543210',
-      amount: '-\$25.00',
-      date: 'Today, 2:30 PM',
-      type: TransactionType.debit,
+      amount: '₹25.00',
+      date: '20 Jan 2025',
+      type: TransactionType.mobile,
       category: 'Recharge',
     ),
     TransactionItem(
       title: 'Salary Credited',
       subtitle: 'ABC Company Ltd',
-      amount: '+\$2,500.00',
-      date: 'Yesterday, 9:00 AM',
+      amount: '₹2,500.00',
+      date: '18 Jan 2025',
       type: TransactionType.credit,
       category: 'Income',
     ),
     TransactionItem(
       title: 'Electricity Bill',
       subtitle: 'State Electricity Board',
-      amount: '-\$85.50',
-      date: '2 days ago, 3:15 PM',
+      amount: '₹85.50',
+      date: '31 Dec 2024',
       type: TransactionType.debit,
       category: 'Bills',
     ),
     TransactionItem(
       title: 'Cashback Received',
       subtitle: 'Shopping Reward',
-      amount: '+\$15.00',
-      date: '3 days ago, 1:20 PM',
+      amount: '₹15.00',
+      date: '25 Dec 2024',
       type: TransactionType.credit,
       category: 'Cashback',
     ),
     TransactionItem(
       title: 'DTH Recharge',
       subtitle: 'Tata Sky',
-      amount: '-\$45.00',
-      date: '5 days ago, 7:45 PM',
+      amount: '₹45.00',
+      date: '01 Jan 2024',
       type: TransactionType.debit,
       category: 'Recharge',
+    ),
+    TransactionItem(
+      title: 'Payment to',
+      subtitle: 'Google',
+      amount: '₹2.00',
+      date: '25 Dec 2024',
+      type: TransactionType.credit,
+      category: 'Payment',
+    ),
+    TransactionItem(
+      title: 'Received from',
+      subtitle: 'Google Pay',
+      amount: '₹45.00',
+      date: '01 Jan 2024',
+      type: TransactionType.bank,
+      category: 'bank',
     ),
   ];
 
@@ -87,102 +107,28 @@ class _HistoryScreenState extends State<HistoryScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        elevation: 0,
-        title: AnimatedOpacity(
-          opacity: _isScrolled ? 1.0 : 0.0,
-          duration: const Duration(milliseconds: 200),
-          child: const Text('History', style: TextStyle(color: Colors.white)),
-        ),
-        actionsPadding: EdgeInsets.only(right: 16),
-        actions: [
-          Container(
-            height: 25,
-            width: 25,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(color: Colors.white, width: 2),
-              color: Colors.black,
-            ),
-            child: Center(
-              child: Text(
-                '?',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-        ],
+      appBar: CommonAppBar(
+        title: 'History',
+        titleOpacity: _isScrolled ? 1.0 : 0.0,
+        actions: [AppBarAction.help()],
       ),
       body: CustomScrollView(
         controller: _scrollController,
         slivers: [
           // Header section that can collapse
-          SliverAppBar(
-            backgroundColor: Colors.black,
+          CommonSliverAppBar(
+            title: 'History',
             expandedHeight: _isScrolled ? 0 : 80,
-            toolbarHeight: 0,
-
-            flexibleSpace: FlexibleSpaceBar(
-              background: AnimatedOpacity(
-                opacity: _isScrolled ? 0.0 : 1.0,
-                duration: const Duration(milliseconds: 200),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 8,
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      const Text(
-                        'History',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const Spacer(),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 11,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.black,
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(
-                            color: Colors.white.withValues(alpha: 0.2),
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Icon(
-                              Icons.download_outlined,
-                              size: 11,
-                              color: Colors.white,
-                            ),
-                            const SizedBox(width: 4),
-                            const Text(
-                              'My Statements',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+            titleOpacity: _isScrolled ? 0.0 : 1.0,
+            actions: [
+              AppBarAction.iconText(
+                text: 'My Statements',
+                icon: Icons.download_outlined,
+                onPressed: () {
+                  // Handle download statements
+                },
               ),
-            ),
+            ],
           ),
           // Pinned search bar
           SliverPersistentHeader(pinned: true, delegate: _SearchBarDelegate()),
@@ -224,71 +170,157 @@ class _HistoryScreenState extends State<HistoryScreen>
   }
 
   Widget _buildTransactionItem(TransactionItem transaction) {
-    return SizedBox(
-      child: Card(
-        color: Colors.grey.withValues(alpha: 0.1),
-        margin: EdgeInsets.zero,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
-        child: ListTile(
-          leading: Container(
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.white.withValues(alpha: 0.1),
-            ),
-            child: Icon(
-              _getTransactionIcon(transaction.type),
-              color: _getTransactionColor(transaction.type),
-              size: 20,
-            ),
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          IOSStylePageRoute(
+            builder: (context) => TransactionDetailScreen(transaction: transaction),
           ),
-          title: Text(
-            transaction.title,
-            style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w500,
+        );
+      },
+      child: SizedBox(
+        child: Card(
+          color: Colors.grey.withValues(alpha: 0.1),
+          margin: EdgeInsets.zero,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 16),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                //icon section
+                transaction.type == TransactionType.credit ||
+                        transaction.type == TransactionType.debit
+                    ? Container(
+                        padding: const EdgeInsets.all(8),
+                        margin: EdgeInsets.only(top: 20),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white.withValues(alpha: 0.1),
+                        ),
+                        child: Icon(
+                          _getTransactionIcon(transaction.type),
+                          color: _getTransactionColor(transaction.type),
+                          size: 25,
+                        ),
+                      )
+                    : Padding(
+                        padding: EdgeInsets.only(top: 24),
+                        child: Icon(
+                          _getTransactionIcon(transaction.type),
+                          color: Colors.white,
+                          size: 26,
+                        ),
+                      ),
+                //details and amount section combined
+                Expanded(
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Row(
+                          children: [
+                            //details section
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    transaction.title,
+                                    style: const TextStyle(
+                                      color: Colors.white60,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 8),
+                                  Text(
+                                    transaction.subtitle,
+                                    style: TextStyle(
+                                      color: Colors.grey.shade300,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  //not the right way to do it but for now its fine
+                                  SizedBox(height: 12),
+                                  Text(
+                                    transaction.date,
+                                    style: TextStyle(
+                                      color: Colors.grey.shade500,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                            //Amount and Account
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                //in phonepe here AutoPay text is there
+                                Text(
+                                  '',
+                                  style: TextStyle(
+                                    color: _getTransactionColor(
+                                      transaction.type,
+                                    ),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                SizedBox(height: 15),
+                                Text(
+                                  transaction.amount,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                SizedBox(height: 5),
+                                Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(
+                                      'Debited from',
+                                      style: TextStyle(
+                                        color: Colors.grey.shade500,
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                    SizedBox(width: 6),
+                                    Container(
+                                      padding: EdgeInsets.all(2),
+                                      height: 20,
+                                      width: 20,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(6),
+                                        color: Colors.white,
+                                      ),
+                                      child: SvgPicture.asset(
+                                        'assets/SBI-logo.svg',
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(left: 16),
+                        height: 1,
+                        color: Colors.grey.withValues(alpha: 0.3),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-          ),
-          subtitle: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 4),
-              Text(
-                transaction.subtitle,
-                style: TextStyle(color: Colors.grey.shade300, fontSize: 14),
-              ),
-              const SizedBox(height: 2),
-              Text(
-                transaction.date,
-                style: TextStyle(color: Colors.grey.shade500, fontSize: 12),
-              ),
-            ],
-          ),
-          trailing: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text(
-                transaction.amount,
-                style: TextStyle(
-                  color: _getTransactionColor(transaction.type),
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-              const SizedBox(height: 4),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade800,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Text(
-                  transaction.category,
-                  style: TextStyle(color: Colors.grey.shade400, fontSize: 10),
-                ),
-              ),
-            ],
           ),
         ),
       ),
@@ -300,9 +332,18 @@ class _HistoryScreenState extends State<HistoryScreen>
   }
 
   IconData _getTransactionIcon(TransactionType type) {
-    return type == TransactionType.credit
-        ? Icons.call_received
-        : Icons.call_made;
+    switch (type) {
+      case TransactionType.credit:
+        return Icons.call_received;
+      case TransactionType.debit:
+        return Icons.call_made;
+      case TransactionType.mobile:
+        return Icons.phone_android;
+      case TransactionType.bank:
+        return Icons.account_balance;
+      case TransactionType.bill:
+        return Icons.receipt;
+    }
   }
 }
 
@@ -324,7 +365,7 @@ class TransactionItem {
   });
 }
 
-enum TransactionType { credit, debit }
+enum TransactionType { credit, debit, mobile, bank, bill }
 
 class _SearchBarDelegate extends SliverPersistentHeaderDelegate {
   @override

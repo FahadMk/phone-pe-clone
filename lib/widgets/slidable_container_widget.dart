@@ -54,7 +54,7 @@ class _SlidableContainerWidgetState extends State<SlidableContainerWidget> {
                     color: Colors.white.withValues(alpha: 0.3),
                     width: 1,
                   ),
-                  color: _getContainerColor(index),
+                  color: _getContainerColor(index).withValues(alpha: 0.25),
                 ),
                 child: Center(
                   child: Text(

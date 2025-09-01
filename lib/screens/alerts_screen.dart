@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/common_app_bar.dart';
 
 class AlertsScreen extends StatefulWidget {
   const AlertsScreen({super.key});
@@ -50,29 +51,7 @@ class _AlertsScreenState extends State<AlertsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        elevation: 0,
-        title: const Text(
-          'Alerts',
-          style: TextStyle(color: Colors.white),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () {
-              setState(() {
-                for (var alert in _alerts) {
-                  alert.isRead = true;
-                }
-              });
-            },
-            child: const Text(
-              'Mark All Read',
-              style: TextStyle(color: Colors.purple),
-            ),
-          ),
-        ],
-      ),
+      appBar: CommonAppBar(title: 'Alerts', actions: [AppBarAction.help()]),
       body: ListView.builder(
         itemCount: _alerts.length,
         itemBuilder: (context, index) {
@@ -91,7 +70,9 @@ class _AlertsScreenState extends State<AlertsScreen> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
           side: BorderSide(
-            color: alert.isRead ? Colors.transparent : Colors.purple.withValues(alpha: 0.3),
+            color: alert.isRead
+                ? Colors.transparent
+                : Colors.purple.withValues(alpha: 0.3),
             width: 1,
           ),
         ),
@@ -121,18 +102,12 @@ class _AlertsScreenState extends State<AlertsScreen> {
               const SizedBox(height: 4),
               Text(
                 alert.message,
-                style: TextStyle(
-                  color: Colors.grey.shade300,
-                  fontSize: 14,
-                ),
+                style: TextStyle(color: Colors.grey.shade300, fontSize: 14),
               ),
               const SizedBox(height: 4),
               Text(
                 alert.time,
-                style: TextStyle(
-                  color: Colors.grey.shade500,
-                  fontSize: 12,
-                ),
+                style: TextStyle(color: Colors.grey.shade500, fontSize: 12),
               ),
             ],
           ),
